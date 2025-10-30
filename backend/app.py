@@ -9,6 +9,10 @@ app = FastAPI(
     version="1.0.0"
 )
 
+def root():
+    return {"message": "🚀 WellSync backend is running successfully!"}
+
+
 from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
