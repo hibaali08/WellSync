@@ -121,14 +121,14 @@ export default function ReflectionPage() {
     setResult(null)
   
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/reflection", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/reflection`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           morning_mood: morningMood,
           evening_text: eveningText,
         }),
-      })
+      })    
   
       if (!response.ok) throw new Error("Failed to analyze reflection")
   

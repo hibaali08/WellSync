@@ -3,13 +3,14 @@
 import { useState, useEffect } from "react"
 import { Clock, Coffee, Zap, Moon, CheckCircle2 } from "lucide-react"
 import axios from "axios"
+import React from "react"
 
 interface ScheduleItem {
   id: number
   time: string
   activity: string
   duration: string
-  icon: JSX.Element
+  icon: React.ReactNode
   color: string
 }
 
@@ -23,7 +24,7 @@ export default function SchedulerPage() {
   useEffect(() => {
     const fetchSchedule = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/scheduler")
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/scheduler`)
         if (response.data.error) {
           setError(response.data.error)
         } else {
@@ -36,10 +37,10 @@ export default function SchedulerPage() {
         setLoading(false)
       }
     }
-
+  
     fetchSchedule()
   }, [])
-
+  
   const toggleComplete = (id: number) => {
     setCompletedItems((prev) =>
       prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]

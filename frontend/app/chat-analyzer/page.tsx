@@ -96,7 +96,7 @@ export default function ChatAnalyzerPage() {
     setResult(null)
   
     try {
-      const res = await axios.post("http://127.0.0.1:8000/api/chat-analyzer", {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/chat-analyzer`, {
         text: input,
       })
   

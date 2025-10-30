@@ -60,23 +60,22 @@ export default function QuizPage() {
     }
   
     setIsLoading(true)
-    try {
-      // Example input mapping for now
-      const res = await axios.post("http://127.0.0.1:8000/api/quiz", {
-        sleep_hours: 7,
-        caffeine_cups: 2,
-        smoke: false,
-        water_intake_glasses: 6,
-        work_hours: 9,
-      })
-      console.log(res.data)
-      setSubmitted(true)
-    } catch (err) {
-      alert("Error submitting quiz. Check backend connection.")
-    } finally {
-      setIsLoading(false)
-    }
-  }
+try {
+  const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/quiz`, {
+    sleep_hours: 7,
+    caffeine_cups: 2,
+    smoke: false,
+    water_intake_glasses: 6,
+    work_hours: 9,
+  })
+  console.log(res.data)
+  setSubmitted(true)
+} catch (err) {
+  alert("Error submitting quiz. Check backend connection.")
+} finally {
+  setIsLoading(false)
+}
+
   
 
   const handleReset = () => {
@@ -195,4 +194,5 @@ export default function QuizPage() {
       </div>
     </main>
   )
+}
 }

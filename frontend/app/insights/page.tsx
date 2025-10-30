@@ -14,7 +14,7 @@ export default function InsightsPage() {
   useEffect(() => {
     const fetchInsights = async () => {
       try {
-        const res = await axios.get("http://127.0.0.1:8000/api/insights")
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/insights`)
         setData(res.data)
       } catch (err) {
         console.error(err)
@@ -23,6 +23,7 @@ export default function InsightsPage() {
     }
     fetchInsights()
   }, [])
+  
 
   if (error) {
     return (
